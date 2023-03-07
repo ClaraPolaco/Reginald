@@ -7,6 +7,7 @@
 #include "hal.h"
 #include "memory_protection.h"
 #include <main.h>
+#include "motors.h"
 
 
 int main(void)
@@ -15,12 +16,18 @@ int main(void)
     halInit();
     chSysInit();
     mpu_init();
+    motors_init();
+    get_selector();
 
 
     /* Infinite loop. */
     while (1) {
     	//waits 1 second
-        chThdSleepMilliseconds(1000);
+
+    	chThdSleepMilliseconds(1000);
+    	left_motor_set_speed(500);
+    	right_motor_set_speed(-500);
+
     }
 }
 
